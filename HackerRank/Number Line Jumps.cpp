@@ -1,4 +1,3 @@
-//https://www.hackerrank.com/challenges/kangaroo/problem?h_r=next-challenge&h_v=zen
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -8,11 +7,16 @@ vector<string> split_string(string);
 // Complete the kangaroo function below.
 string kangaroo(int x1, int v1, int x2, int v2) {
     
-    while(x1 <= x2 && x1 <= INT_MAX && x2 <= INT_MAX){
+    int dist = x2-x1;
+    
+    while(x1 <= x2){
         x1 += v1;
         x2 += v2;
         if(x1 == x2){
             return "YES";
+        }
+        if(x2-x1 > dist){
+            break;
         }
         
     }
