@@ -9,26 +9,46 @@ vector<int> solution(int n) {
     vector<int> answer;
     int arr[n][n];
     memset(arr, 0, sizeof arr);
+    int x = 0;
+    int y = 0;
     int num = 1;
-    int size = n;
-        
-        for(int i=0; i<size; ++i){
-            arr[i][n-size] = num++;
+    
+    for(int i=0; i<n; ++i){
+        if(i%3 == 0){ // down
+            for(int j=0; j<n-i; ++j){            
+                arr[x][y] = num++;
+                x++;
+            }
+            x-=1;
+            y+=1;
         }
-        for(int j=1; j<size; ++j){
-            arr[size-1][j] = num++;
+        else if (i%3 == 1) // right
+        {
+            for(int j=0; j<n-i; ++j){      
+                arr[x][y] = num++;    
+                y++;  
+            }
+            x-=1;
+            y-=2;
             
         }
-        for(int k=size-1; k>0; k--){
-                arr[k][k] = num++;
-        }
         
-        for(int i=0; i<n; ++i){
-            for(int j=0; j<n; ++j){
-                cout << arr[i][j] << " ";
+        else{ // up
+            for(int j=0; j<n-i; ++j){         
+                arr[x][y] = num++;
+                x--;
+                y--;   
             }
-        cout<<endl;
+            x+=2;
+            y+=1;
         }
-        
+    }
+    
+    for(int i=0; i<n; ++i){
+        for(int j=0; j<n; ++j){
+            if(arr[i][j] != 0)
+                answer.push_back(arr[i][j]);
+        }
+    }
     return answer;
 }
